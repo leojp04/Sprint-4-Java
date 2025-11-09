@@ -7,6 +7,7 @@ import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+
 import java.util.List;
 
 @Path("/api/atendimentos")
@@ -17,24 +18,37 @@ public class AtendimentoResource {
     @Inject
     AtendimentoService atendimentoService;
 
-    // GET /api/atendimentos
     @GET
     public List<Atendimento> listarTodos() {
         return atendimentoService.listarTodos();
     }
 
-    // GET /api/atendimentos/{id}
     @GET
     @Path("/{id}")
     public Atendimento buscarPorId(@PathParam("id") Integer id) {
         return atendimentoService.buscarPorId(id);
     }
 
-    // POST /api/atendimentos
     @POST
     @Transactional
     public Response criar(Atendimento atendimento) {
         Atendimento salvo = atendimentoService.registrar(atendimento);
         return Response.ok(salvo).build();
+    }
+
+
+    @PUT
+    @Path("/{id}")
+    @Transactional
+    public Atendimento atualizar(@PathParam("id") Integer id, Atendimento atendimento) {
+        return atendimentoService.atualizar(id, atendimento);
+    }
+
+    @DELETE
+    @Path("/{id}")
+    @Transactional
+    public Response deletar(@PathParam("id") Integer id) {
+        atendimentoService.deletar(id);
+        return Response.noContent().build();
     }
 }

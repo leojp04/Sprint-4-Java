@@ -6,5 +6,5 @@ import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class AtendimentoRepository implements PanacheRepository<Atendimento> {
-    // CRUD padrão já vem do Panache
+
 }

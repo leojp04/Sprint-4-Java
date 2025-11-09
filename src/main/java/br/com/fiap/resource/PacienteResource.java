@@ -32,7 +32,7 @@ public class PacienteResource {
     @POST
     @Transactional
     public Response criar(Paciente paciente) {
-        Paciente salvo = pacienteService.salvar(paciente);
+        Paciente salvo = pacienteService.criar(paciente);
         return Response.ok(salvo).build();
     }
 

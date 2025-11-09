@@ -6,5 +6,5 @@ import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class PacienteRepository implements PanacheRepository<Paciente> {
-    // dá pra criar findByCpf aqui se quiser
+
 }

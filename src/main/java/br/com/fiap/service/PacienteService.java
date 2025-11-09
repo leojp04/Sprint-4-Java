@@ -25,7 +25,7 @@ public class PacienteService {
     }
 
     @Transactional
-    public Paciente salvar(Paciente paciente) {
+    public Paciente criar(Paciente paciente) {
         pacienteRepository.persist(paciente);
         return paciente;
     }

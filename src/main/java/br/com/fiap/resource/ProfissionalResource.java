@@ -33,7 +33,7 @@ public class ProfissionalResource {
     @Transactional
     public Response criar(Profissional profissional) {
         Profissional salvo = profissionalService.salvar(profissional);
-        return Response.status(Response.Status.CREATED).entity(salvo).build();
+        return Response.ok(salvo).build();
     }
 
     @PUT

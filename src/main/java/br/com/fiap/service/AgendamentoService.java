@@ -61,18 +61,16 @@ public class AgendamentoService {
         LocalDateTime inicio = agendamento.getDataAgendamento();
         LocalDateTime fim = inicio.plusMinutes(DURACAO_CONSULTA_MINUTOS);
 
-        // consulta de conflito
         boolean conflito = agendamentoRepository.existeConflitoProfissional(
                 agendamento.getProfissional().getId(),
                 inicio,
                 fim
         );
-
         if (conflito) {
             throw new HorarioOcupadoException("O profissional já possui uma consulta neste horário");
         }
 
-        agendamento.setStatus("AGENDADO");
+        agendamento.setStatus("AGENDADA");
         agendamento.setDataFim(fim);
 
         agendamentoRepository.persist(agendamento);
@@ -83,7 +81,10 @@ public class AgendamentoService {
     public Agendamento atualizar(Integer id, Agendamento dados) {
         Agendamento existente = buscarPorId(id);
 
-        if (dados.getDataAgendamento() != null) existente.setDataAgendamento(dados.getDataAgendamento());
+        if (dados.getDataAgendamento() != null) {
+            existente.setDataAgendamento(dados.getDataAgendamento());
+            existente.setDataFim(dados.getDataAgendamento().plusMinutes(DURACAO_CONSULTA_MINUTOS));
+        }
         if (dados.getStatus() != null) existente.setStatus(dados.getStatus());
         if (dados.getModalidade() != null) existente.setModalidade(dados.getModalidade());
         if (dados.getPlataforma() != null) existente.setPlataforma(dados.getPlataforma());

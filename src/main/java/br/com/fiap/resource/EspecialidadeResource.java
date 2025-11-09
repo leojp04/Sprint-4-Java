@@ -7,6 +7,7 @@ import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+
 import java.util.List;
 
 @Path("/api/especialidades")
@@ -31,8 +32,8 @@ public class EspecialidadeResource {
     @POST
     @Transactional
     public Response criar(Especialidade especialidade) {
-        Especialidade criada = especialidadeService.criar(especialidade);
-        return Response.ok(criada).build();
+        Especialidade salvo = especialidadeService.salvar(especialidade);
+        return Response.ok(salvo).build();
     }
 
     @PUT

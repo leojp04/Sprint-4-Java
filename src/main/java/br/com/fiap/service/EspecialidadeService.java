@@ -6,6 +6,7 @@ import br.com.fiap.repository.EspecialidadeRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+
 import java.util.List;
 
 @ApplicationScoped
@@ -24,7 +25,7 @@ public class EspecialidadeService {
     }
 
     @Transactional
-    public Especialidade criar(Especialidade especialidade) {
+    public Especialidade salvar(Especialidade especialidade) {
         especialidadeRepository.persist(especialidade);
         return especialidade;
     }
@@ -32,9 +33,11 @@ public class EspecialidadeService {
     @Transactional
     public Especialidade atualizar(Integer id, Especialidade dados) {
         Especialidade existente = buscarPorId(id);
+
         if (dados.getNome() != null) {
             existente.setNome(dados.getNome());
         }
+
         return existente;
     }
 
