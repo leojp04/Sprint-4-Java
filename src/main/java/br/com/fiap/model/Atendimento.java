@@ -13,26 +13,25 @@ public class Atendimento extends PanacheEntityBase {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "atend_seq")
     @Column(name = "ID_ATENDIMENTO")
-    public Integer id;
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "ID_CONSULTA", nullable = false)
-    public Agendamento consulta;
+    private Agendamento consulta;
 
     @Column(name = "NR_GRAVIDADE")
-    public Integer gravidade;
+    private Integer gravidade;
 
     @Column(name = "DT_ABERTURA", nullable = false)
-    public LocalDateTime abertura;
+    private LocalDateTime abertura;
 
     @Column(name = "DT_ENCERRAMENTO")
-    public LocalDateTime encerramento;
+    private LocalDateTime encerramento;
 
-    // Corrigido para BigDecimal (Oracle usa NUMBER)
     @Column(name = "NR_PRIORIDADE_CALC")
-    public BigDecimal prioridade;
+    private BigDecimal prioridade;
 
-    // Getters e Setters (mantém compatibilidade com JSON e Hibernate)
+    // Getters e Setters
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
 

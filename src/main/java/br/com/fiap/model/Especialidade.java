@@ -16,20 +16,10 @@ public class Especialidade extends PanacheEntityBase {
     @Column(name = "NM_ESPECIALIDADE", nullable = false, length = 60)
     private String nome;
 
-    // ===== Getters e Setters =====
-    public Integer getId() {
-        return id;
-    }
+    // Getters e Setters
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
 }
